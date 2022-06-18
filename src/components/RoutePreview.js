@@ -29,7 +29,8 @@ const RoutePreview = ({ isSelected, route, onClick }) => {
                 <div className="title">{route.end}</div>
               </div>
             </div>}
-        </div></div>
+        </div>
+      </div>
     </div>
   );
 };

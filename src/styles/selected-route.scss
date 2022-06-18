@@ -1,0 +1,173 @@
+@import './constants.scss';
+
+.selected-route {
+  &-option {
+    background-color: $wild-blue-yonder;
+    color: $white;
+    border: none;
+    margin-right: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+
+    &:hover {
+      background-color: $metallic-blue;
+    }
+
+    &-selected {
+      background-color: $metallic-blue;
+    }
+  }
+
+  &-content {
+    margin-top: 20px;
+    background-color: $white;
+    height: calc(100vh - $container-padding * 2 - $navbar-height - 60px);
+    border-radius: 5px;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &-header {
+    color: $metallic-blue;
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  &-info {
+    background-color: $tiffany-blue;
+    color: $white;
+    padding: 7px 20px;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  &-stops {
+    padding: 0 10px;
+    overflow: auto;
+
+  }
+
+  /* steps */
+  .step {
+    position: relative;
+    min-height: 1em;
+    color: $metallic-blue;
+    font-size: 16px;
+    padding-bottom: 20px;
+    cursor: pointer;
+
+    &--active {
+      .circle:after {
+        height: 140px;
+      }
+    }
+
+    &:hover,
+    &--active {
+      .circle {
+        width: 18px;
+        height: 18px;
+        left: -2.5px;
+        border-width: 4px;
+        top: 5px
+      }
+
+      .circle:after {
+        left: 3.5px;
+        top: 10px;
+      }
+    }
+  }
+
+  .title {
+    line-height: 1.5em;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .caption {
+    font-size: 15px;
+    border: 2px solid $light-periwinkle;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 2px solid #CBD1E0;
+    border-radius: 5px;
+
+    &-header {
+      padding: 10px;
+      background-color: $light-periwinkle;
+    }
+
+    &-content {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+
+      &--next {
+        font-weight: 800;
+      }
+    }
+  }
+
+  .step>div:first-child {
+    position: static;
+    height: 0;
+  }
+
+  .step>div:not(:first-child) {
+    padding-left: 25px;
+  }
+
+  .circle {
+    background: $white;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 100%;
+    border: 3px solid #FBCE3E;
+    top: 5px;
+  }
+
+  .circle:after {
+    content: ' ';
+    position: absolute;
+    display: block;
+    top: 7px;
+    height: 34px;
+    transform-origin: 50% -100%;
+    left: 2px;
+    width: 3px;
+    background-color: $sunglow;
+  }
+
+  .step:last-child .circle:after {
+    display: none
+  }
+
+  .step.step-active {
+    color: #4285f4
+  }
+
+  .step.step-active .circle {
+    background-color: #4285f4;
+  }
+}

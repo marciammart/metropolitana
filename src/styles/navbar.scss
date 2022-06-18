@@ -2,13 +2,14 @@
 
 .navbar {
   height: $navbar-height;
-  background-color: $queen-blue;
   display: flex;
   align-items: center;
   padding: 0 30px;
   color: $white;
   font-weight: 700;
   justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 auto;
 
   @include for-tablet-landscape {
     padding: 0 15px;
@@ -16,6 +17,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
+  }
+
+  &-wrapper {
+    background-color: $queen-blue;
   }
 
   &-logo {
