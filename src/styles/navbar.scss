@@ -1,0 +1,69 @@
+@import './constants.scss';
+
+.navbar {
+  height: $navbar-height;
+  background-color: $queen-blue;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  color: $white;
+  font-weight: 700;
+  justify-content: space-between;
+
+  @include for-tablet-landscape {
+    padding: 0 15px;
+    height: $navbar-height - 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  &-logo {
+    height: 30px;
+    cursor: pointer;
+
+    @include for-tablet-landscape {
+      height: 25px;
+    }
+  }
+
+  &-menu {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    gap: 20px;
+
+    @include for-tablet-landscape {
+      position: absolute;
+      width: 100%;
+      right: 0;
+      top: $navbar-height - 10px;
+      background-color: $metallic-blue;
+      z-index: 1000;
+      padding: 15px;
+      flex-direction: column;
+      text-align: right;
+      border-radius: 0 0 5px 5px;
+      display: none;
+    }
+
+    &-open {
+      @include for-tablet-landscape {
+        display: flex;
+      }
+    }
+
+    &-mobile {
+      display: none;
+
+      @include for-tablet-landscape {
+        display: flex;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-link {
+    cursor: pointer;
+  }
+}

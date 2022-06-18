@@ -1,0 +1,17 @@
+@mixin for-tablet-landscape {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
+
+$white: #ffffff;
+$bright-gray: #ECEFF7;
+$light-periwinkle: #CBD1E0;
+$wild-blue-yonder: #A9B5D6;
+$queen-blue: #486091;
+$metallic-blue: #324A7B;
+$sunglow: #FBCE3E;
+
+$navbar-height: 50px;
+$container-padding: 30px;
