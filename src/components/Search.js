@@ -10,7 +10,7 @@ const Search = ({ onChange, defaultFilter, defaultQuery }) => {
   ];
 
   const [filter, setFilter] = useState(defaultFilter || filterOptions[0].value);
-  const [query, setQuery] = useState(defaultQuery);
+  const [query, setQuery] = useState(defaultQuery || "");
 
   const handleInput = ({ target: { value } }) => {
     setQuery(value);

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import FeatherIcon from "feather-icons-react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import useRouteQuery from "../http/useRouteQuery";
-import Stop from "./Stop";
+import Trajectory from "./Trajectory";
+import Timetable from "./Timetable";
 
 const SelectedRoute = ({ route }) => {
   const [getRoute, { error, loading, data }] = useRouteQuery();
@@ -15,25 +16,36 @@ const SelectedRoute = ({ route }) => {
   return (
     <div className="selected-route">
       <div>
-        <button className="selected-route-option selected-route-option-selected">Percurso</button>
-        <button className="selected-route-option">Horário</button>
+        <MenuButton path="/" text="Percurso" />
+        <MenuButton path="/horario" text="Horário" />
       </div>
       <div className="selected-route-content">
-        <div className="selected-route-header">
-          <div className="selected-route-title">
-            <span>{data.start}</span>
-            <FeatherIcon icon="chevrons-right" />
-            <span>{data.end}</span>
-          </div>
-          <div className="selected-route-info">
-            {data.durationInMinutes ? `${data.durationInMinutes} minutos` : "Sem partidas previstas para hoje"}
-          </div>
-        </div>
-        <div className="selected-route-stops">
-          {data.stops.map((stop, i) => <Stop key={i} stop={stop} />)}
-        </div>
+        <Routes>
+          <Route exact path="/" element={<Trajectory data={data} />} />
+          <Route path="/horario" element={<Timetable data={data} />} />
+        </Routes>
       </div>
-    </div>
+    </div >
+  );
+};
+
+const MenuButton = ({ text, path }) => {
+  const navigate = useNavigate();
+
+  const goTo = () => {
+    if (location.pathname !== path) navigate(`${path}${location.search}`);
+  };
+
+  const isSelected = () => {
+    return location.pathname === path ? "selected-route-option-selected" : "";
+  };
+
+  return (
+    <button
+      onClick={() => goTo()}
+      className={`selected-route-option ${isSelected()}`}>
+      {text}
+    </button>
   );
 };
 
