@@ -10,7 +10,7 @@ const useRoutesQuery = () => {
     setLoading(true);
     setError(undefined);
     setData(undefined);
-    http("/v2/routes", query)
+    http("/v2/directions", query)
       .then(data => { setData(data); setLoading(false); })
       .catch(error => { setError(error); setLoading(false); });
   };
