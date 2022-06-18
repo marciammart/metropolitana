@@ -26,7 +26,7 @@ const SelectedRoute = ({ route }) => {
             <span>{data.end}</span>
           </div>
           <div className="selected-route-info">
-            {data.durationInMinutes ? `${data.durationInMinutes} minutos` : "Sem mais partidas hoje"}
+            {data.durationInMinutes ? `${data.durationInMinutes} minutos` : "Sem partidas previstas para hoje"}
           </div>
         </div>
         <div className="selected-route-stops">
