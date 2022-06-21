@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import FeatherIcon from "feather-icons-react";
 import uniqWith from "lodash/uniqWith";
 import uniq from "lodash/uniq";
 import isEqual from "lodash/isEqual";
+import { Header } from "./Trajectory";
 
 const Timetable = ({ data }) => {
   const availabilities = data.stops[0].departures
@@ -34,11 +34,7 @@ const Timetable = ({ data }) => {
       <div className="has-text-metallic-blue p-3">
         <div className="columns is-justify-content-space-between mb-5">
           <div className="column">
-            <span className="is-size-4 is-flex is-align-items-center is-gap-1 has-text-metallic-blue has-text-weight-extra-bold">
-              <span>{data.start}</span>
-              <FeatherIcon icon="chevrons-right" size="30" />
-              <span>{data.end}</span>
-            </span>
+            <Header data={data} />
           </div>
           {/* <div className="column is-narrow">
             <span className="tag is-size-5 is-rounded is-tiffany-blue has-text-weight-bold is-clickable">

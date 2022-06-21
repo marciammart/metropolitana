@@ -7,12 +7,7 @@ const Trajectory = ({ data }) => {
     <div className="route-trajectory has-text-metallic-blue p-3">
       <div className="columns is-justify-content-space-between">
         <div className="column">
-          <span className="is-size-4 is-flex is-align-items-center is-gap-1 has-text-metallic-blue has-text-weight-extra-bold mb-5">
-            <span className="tag is-large is-sunglow is-rounded">{data.currentRouteId}</span>
-            <span>{data.start}</span>
-            <FeatherIcon icon="chevrons-right" size="30" />
-            <span>{data.end}</span>
-          </span>
+          <Header data={data} className="mb-5" />
           {!data.hasNextDeparture && <span className="tag is-danger is-light is-medium">
             Sem próximas partidas para hoje
           </span>}
@@ -29,6 +24,19 @@ const Trajectory = ({ data }) => {
         )}
       </ul>
     </div >
+  );
+};
+
+export const Header = ({ data, className = "" }) => {
+  return (
+    <span className={`is-size-4 is-flex is-align-items-center is-gap-1 has-text-metallic-blue has-text-weight-extra-bold ${className}`} >
+      <span className="tag is-large is-sunglow is-rounded">{data.currentRouteId}</span>
+      <span>{data.start}</span>
+      {data.end && <>
+        <FeatherIcon icon="chevrons-right" size="30" />
+        <span>{data.end}</span>
+      </>}
+    </span >
   );
 };
 
