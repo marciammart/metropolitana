@@ -14,18 +14,18 @@ const SelectedRoute = ({ route }) => {
   if (loading || !data || error) return <div>loading</div>;
 
   return (
-    <div className="selected-route">
-      <div>
+    <>
+      <div className="buttons">
         <MenuButton path="/" text="Percurso" />
         <MenuButton path="/horario" text="Horário" />
       </div>
-      <div className="selected-route-content">
+      <div className="box is-shadowless">
         <Routes>
           <Route exact path="/" element={<Trajectory data={data} />} />
           <Route path="/horario" element={<Timetable data={data} />} />
         </Routes>
       </div>
-    </div >
+    </>
   );
 };
 
@@ -37,13 +37,13 @@ const MenuButton = ({ text, path }) => {
   };
 
   const isSelected = () => {
-    return location.pathname === path ? "selected-route-option-selected" : "";
+    return location.pathname === path ? "is-metallic-blue" : "is-wild-blue-yonder";
   };
 
   return (
     <button
       onClick={() => goTo()}
-      className={`selected-route-option ${isSelected()}`}>
+      className={`button is-rounded ${isSelected()}`}>
       {text}
     </button>
   );

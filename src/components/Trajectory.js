@@ -3,21 +3,33 @@ import FeatherIcon from "feather-icons-react";
 import Stop from "./Stop";
 
 const Trajectory = ({ data }) => {
-  return (<>
-    <div className="selected-route-header">
-      <div className="selected-route-title">
-        <span>{data.start}</span>
-        <FeatherIcon icon="chevrons-right" />
-        <span>{data.end}</span>
+  return (
+    <div className="route-trajectory has-text-metallic-blue p-3">
+      <div className="columns is-justify-content-space-between">
+        <div className="column">
+          <span className="is-size-4 is-flex is-align-items-center is-gap-1 has-text-metallic-blue has-text-weight-extra-bold mb-5">
+            <span className="tag is-large is-sunglow is-rounded">{data.currentRouteId}</span>
+            <span>{data.start}</span>
+            <FeatherIcon icon="chevrons-right" size="30" />
+            <span>{data.end}</span>
+          </span>
+          {!data.hasNextDeparture && <span className="tag is-danger is-light is-medium">
+            Sem próximas partidas para hoje
+          </span>}
+        </div>
+        <div className="column is-narrow">
+          <span className="tag is-size-5 is-rounded is-tiffany-blue has-text-weight-bold">
+            {data.durationInMinutes} minutos
+          </span>
+        </div>
       </div>
-      <div className="selected-route-info">
-        {data.durationInMinutes ? `${data.durationInMinutes} minutos` : "Sem partidas previstas para hoje"}
-      </div>
-    </div>
-    <div className="selected-route-stops">
-      {data.stops.map((stop, i) => <Stop key={i} stop={stop} />)}
-    </div>
-  </>);
+      <ul className="steps is-vertical is-thin">
+        {data.stops.map((stop, stopIdx) =>
+          <Stop key={stopIdx} stop={stop} />
+        )}
+      </ul>
+    </div >
+  );
 };
 
 export default Trajectory;

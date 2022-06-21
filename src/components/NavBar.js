@@ -1,29 +1,43 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import logoDark from "../assets/logo-dark.png";
-import FeatherIcon from "feather-icons-react";
 import { useOnClickOutside } from "use-hooks";
 
 const NavBar = () => {
   const ref = useRef();
-  const [open, setOpen] = useState(false);
+  const [burgerOpen, setBurgerOpen] = useState(false);
 
-  useOnClickOutside(ref, () => setOpen(false));
+  useOnClickOutside(ref, () => setBurgerOpen(false));
 
   return (
-    <div className="navbar-wrapper">
-      <div className="navbar">
-        <img className="navbar-logo" src={logoDark} alt="metropolitana" />
-        <div ref={ref}>
-          <div className="navbar-menu-mobile" onClick={() => setOpen(!open)}>
-            <FeatherIcon icon="menu" size="25" />
-          </div>
-          <div className={`navbar-menu ${open && "navbar-menu-open"}`}>
-            <div className="navbar-link">Sobre</div>
-            <div className="navbar-link">Contactar</div>
+    <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <Link className="navbar-item" to="/">
+          <img src={logoDark} />
+        </Link>
+
+        <a role="button" className={`navbar-burger ${burgerOpen ? "is-active" : ""}`}
+          aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
+          onClick={() => setBurgerOpen(!burgerOpen)}>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <Link className="navbar-item" to="/">
+              Sobre
+            </Link>
+            <Link className="navbar-item" to="/">
+              Contactar
+            </Link>
           </div>
         </div>
-      </div >
-    </div >
+      </div>
+    </nav>
   );
 };
 

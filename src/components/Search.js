@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useOnClickOutside } from "use-hooks";
-import FeatherIcon from "feather-icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const Search = ({ onChange, defaultFilter, defaultQuery }) => {
   const filterOptions = [
@@ -23,20 +24,27 @@ const Search = ({ onChange, defaultFilter, defaultQuery }) => {
   };
 
   return (
-    <div className="search">
-      <div>Pesquisar por linha</div>
-      <div className="search-form">
-        <input
-          className="search-input"
-          placeholder='Exemplo: 410'
-          onChange={handleInput}
-          value={query} />
-        <DropDown
-          onChange={handleDropdown}
-          selected={filter}
-          options={filterOptions} />
+    <>
+      <div className="has-text-queen-blue has-text-weight-bold mb-1">
+        Pesquisar por linha
       </div>
-    </div>
+      <div className="field is-grouped mb-5">
+        <p className="control is-expanded">
+          <input
+            className="input"
+            type="text"
+            placeholder="Exemplo: 410"
+            onChange={handleInput}
+            value={query} />
+        </p>
+        <p className="control">
+          <DropDown
+            onChange={handleDropdown}
+            selected={filter}
+            options={filterOptions} />
+        </p>
+      </div>
+    </>
   );
 };
 
@@ -54,15 +62,24 @@ const DropDown = ({ options, selected, onChange }) => {
   const selectedOption = options.find((option) => option.value === selected);
 
   return (
-    <div ref={ref} className='dropdown'>
-      <div className='dropdown-selected' onClick={() => setOpen(!open)}>
-        <span>{selectedOption.label}</span>
-        <FeatherIcon icon="chevron-down" size="20" />
+    <div ref={ref} className="dropdown is-active">
+      <div className="dropdown-trigger" onClick={() => setOpen(!open)}>
+        <button className="button is-link" aria-haspopup="true" aria-controls="dropdown-menu">
+          <span>{selectedOption.label}</span>
+          <span className="icon is-small">
+            <FontAwesomeIcon icon={faAngleDown} />
+          </span>
+        </button>
       </div>
-      {open &&
-        <div className='dropdown-options'>
-          {options.filter(option => option.value !== selectedOption.value).map(option => <div key={option.value} onClick={() => handleSelect(option)}>{option.label}</div>)}
-        </div>}
+      {open && <div className="dropdown-menu" id="dropdown-menu" role="menu">
+        <div className="dropdown-content">
+          {options.map(option =>
+            <div key={option.key} onClick={() => handleSelect(option)} className="dropdown-item">
+              {option.label}
+            </div>
+          )}
+        </div>
+      </div>}
     </div>
   );
 };

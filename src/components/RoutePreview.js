@@ -2,35 +2,31 @@ import React from "react";
 
 const RoutePreview = ({ isSelected, route, onClick }) => {
   return (
-    <div className={`route-result ${isSelected && "route-result-selected"}`} onClick={onClick}>
-      <div className="route-result-number">{route.currentRouteId}</div>
-      <div>
-        <div className="steps">
-          <div className="step">
-            <div className={`note ${route.direction !== "circular" && "note-inicia"}`}>
-              <div>{route.direction === "circular" ? "Circular" : "Inicia"}</div>
-            </div>
-            <div>
-              <div className="circle"></div>
-            </div>
-            <div>
-              <div className="title">{route.start}</div>
-            </div>
+    <div className={`route-preview ${isSelected ? "is-selected" : ""}`} onClick={onClick}>
+      <div className="route-number">{route.currentRouteId}</div>
+      <ul className="steps is-vertical is-thin is-super-thin">
+        <li className="steps-segment">
+          <div className="steps-note">
+            <p className="is-size-6">
+              {route.direction === "circular" ? "Circular" : "Inicia"}
+            </p>
           </div>
-          {route.direction !== "circular" &&
-            <div className="step">
-              <div className="note">
-                <div>Termina</div>
-              </div>
-              <div>
-                <div className="circle"></div>
-              </div>
-              <div>
-                <div className="title">{route.end}</div>
-              </div>
-            </div>}
-        </div>
-      </div>
+          <span className="steps-marker"></span>
+          <div className="steps-content">
+            <p className="is-size-6">{route.start}</p>
+          </div>
+        </li>
+        {route.direction !== "circular" &&
+          <li className="steps-segment">
+            <div className="steps-note">
+              <p className="is-size-6">Termina</p>
+            </div>
+            <span className="steps-marker"></span>
+            <div className="steps-content">
+              <p className="is-size-6">{route.end}</p>
+            </div>
+          </li>}
+      </ul>
     </div>
   );
 };

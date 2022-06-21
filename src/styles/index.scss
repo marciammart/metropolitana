@@ -1,290 +1,266 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&display=swap');
-@import './navbar.scss';
-@import './selected-route.scss';
+@import 'bulma/css/bulma.min.css';
+@import 'bulma-o-steps/bulma-steps.min.css';
+@import '@cityssm/bulma-sticky-table/bulma-with-sticky-table.min.css';
+
+$white: #ffffff;
+$bright-gray: #ECEFF7;
+$light-periwinkle: #CBD1E0;
+$wild-blue-yonder: #A9B5D6;
+$queen-blue: #486091;
+$metallic-blue: #324A7B;
+$tiffany-blue: #0BBAB4;
+$sunglow: #FBCE3E;
 
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif !important;
 }
 
-body {
+/* helpers */
+
+.is-bright-gray {
   background-color: $bright-gray;
-  margin: 0;
-  min-width: 300px;
 }
 
+.is-wild-blue-yonder {
+  background-color: $wild-blue-yonder;
+  color: $metallic-blue  !important;
 
-.container {
-  padding: $container-padding;
-  display: flex;
-  max-width: 1500px;
-  margin: 0 auto;
+  &.button {
+    border: none;
 
-  @include for-tablet-landscape {
-    padding: 0;
-    flex-direction: column;
-  }
-}
-
-.route-selector {
-  background-color: $white;
-  height: calc(100vh - $container-padding * 2 - $navbar-height);
-  width: 450px;
-  border-radius: 5px;
-  padding-top: 25px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-
-  @include for-tablet-landscape {
-    width: 100%;
-    padding-top: 10px;
-    height: calc(100vh - $navbar-height + 10px);
-  }
-
-  &-results {
-    overflow: auto;
-    padding: 0 25px;
-
-    @include for-tablet-landscape {
-      padding: 0 15px;
+    &:hover,
+    &:focus {
+      background-color: $metallic-blue;
+      color: $white  !important;
     }
   }
+}
 
-  &-message {
-    padding: 0 25px;
-    text-align: center;
-    color: $queen-blue
+.is-light-periwinkle {
+  background-color: $light-periwinkle;
+}
+
+.is-tiffany-blue {
+  background-color: $tiffany-blue  !important;
+  color: $white  !important;
+}
+
+.is-sunglow {
+  background-color: $sunglow  !important;
+  color: $metallic-blue  !important;
+}
+
+.is-metallic-blue {
+  background-color: $metallic-blue;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    color: $white  !important;
   }
 
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: linear-gradient(to bottom,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 1) 90%);
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
+  &.button {
+    border: none;
   }
 }
 
-.content {
-  flex: 2.5;
-  padding-left: 30px;
-
-  @include for-tablet-landscape {
-    display: none;
-  }
-
-  &-logo {
-    max-width: 500px;
-    width: 92%;
-  }
-
-  &-tip {
-    color: $queen-blue;
-    font-weight: 700;
-    text-align: center;
-  }
-
-  &-centered {
-    height: calc(100vh - $container-padding * 2 - $navbar-height);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.search {
+.has-text-queen-blue {
   color: $queen-blue;
-  font-weight: 700;
-  margin-bottom: 25px;
-  padding: 0 25px;
+}
 
-  @include for-tablet-landscape {
-    padding: 0 15px;
+.has-text-metallic-blue {
+  color: $metallic-blue;
+}
+
+.has-text-weight-extra-bold {
+  font-weight: 800;
+}
+
+.has-radius {
+  border-radius: .2rem;
+}
+
+.is-gap-1 {
+  gap: 10px;
+}
+
+/* table */
+
+.table {
+  width: max-content;
+
+  th {
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
-  &-form {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-  }
-
-  &-input {
+  td,
+  th {
     border: 2px solid $light-periwinkle;
-    border-radius: 5px;
-    padding: 10px;
-    color: $queen-blue;
-    margin-top: 5px;
-    flex: 1;
+    color: $metallic-blue  !important;
+  }
 
-    @include for-tablet-landscape {
-      width: 50%;
-    }
+  thead th {
+    background: $light-periwinkle  !important;
 
-    &::focus {
-      outline-color: $metallic-blue;
+    &:not(:first-child) {
+      text-align: center;
     }
+  }
+
+  tbody th {
+    background: $bright-gray  !important;
   }
 
 }
+
+.table-container {
+  background-color: $light-periwinkle;
+  border: 2px solid $light-periwinkle;
+  border-radius: 5px;
+  max-height: 500px !important;
+  max-width: fit-content;
+}
+
+.checkbox input {
+  transform: scale(1.4);
+}
+
+.timetable-tag {
+  font-size: 15px !important;
+  font-weight: 800;
+}
+
+/* navbar */
+
+.navbar.is-primary {
+  background-color: $queen-blue;
+}
+
+.navbar.is-primary .navbar-brand .navbar-link.is-active,
+.navbar.is-primary .navbar-brand .navbar-link:focus,
+.navbar.is-primary .navbar-brand .navbar-link:hover,
+.navbar.is-primary .navbar-brand>a.navbar-item.is-active,
+.navbar.is-primary .navbar-brand>a.navbar-item:focus,
+.navbar.is-primary .navbar-brand>a.navbar-item:hover {
+  background-color: inherit;
+}
+
+.navbar-link.is-active,
+.navbar-link:focus,
+.navbar-link:focus-within,
+.navbar-link:hover,
+a.navbar-item.is-active,
+a.navbar-item:focus,
+a.navbar-item:focus-within,
+a.navbar-item:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+.navbar-item,
+.navbar-link {
+  color: $white;
+}
+
+/* search */
 
 .dropdown {
-  position: relative;
-  cursor: pointer;
-  width: 150px;
-
-  @include for-tablet-landscape {
-    width: 130px;
-  }
-
-  &-selected {
+  button.is-link {
     background-color: $metallic-blue;
-    color: $white;
-    padding: 10px;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 13px;
-    display: flex;
-    justify-content: space-between;
+
+    &:hover {
+      background-color: $metallic-blue;
+    }
   }
 
-  &-options {
-    position: absolute;
-    background-color: $queen-blue;
-    color: $white;
-    font-size: 13px;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
+  .dropdown-item {
+    &:hover {
+      background-color: $queen-blue;
+      color: $white;
+    }
   }
 }
 
-.route-result {
+.input:active,
+.input:focus,
+.is-active.input,
+.is-active.textarea,
+.is-focused.input,
+.is-focused.textarea,
+.select select.is-active,
+.select select.is-focused,
+.select select:active,
+.select select:focus,
+.textarea:active,
+.textarea:focus {
+  border-color: $metallic-blue;
+}
+
+.stop-details {
+  border: 2px solid $light-periwinkle;
+
+  .stop-times {
+    line-height: 20px;
+  }
+}
+
+/* main */
+
+.main-text {
+  margin-top: 10vh;
+  color: $queen-blue;
+  font-weight: 700;
+  font-size: 1.1rem;
+
+  p {
+    margin-top: -0.9rem;
+  }
+}
+
+/* steps */
+
+.route-preview {
   background-color: $bright-gray;
-  padding: 20px;
-  margin-bottom: 25px;
-  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 1.5rem 1rem 0;
+  border-radius: .3rem;
+  color: $metallic-blue;
+  font-weight: 600;
   -webkit-transition: background-color 100ms linear;
   -ms-transition: background-color 100ms linear;
   transition: background-color 100ms linear;
   cursor: pointer;
 
-  @include for-tablet-landscape {
-    padding: 15px;
-    margin-bottom: 15px;
-  }
-
-  .steps {
-    margin-top: 20px;
-
-    @include for-tablet-landscape {
-      margin-top: 10px;
-    }
-  }
-
-  .step {
-    position: relative;
-    min-height: 1em;
-    color: $metallic-blue;
-    font-size: 13px;
-  }
-
-  .title {
-    font-weight: 800;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .step+.step {
-    margin-top: 10px
-  }
-
-  .step>div:first-child {
-    position: static;
-    height: 0;
-  }
-
-  .step>div:not(:first-child) {
-    margin-left: 65px;
-    padding-left: 10px;
-  }
-
-  .note {
-    color: $wild-blue-yonder;
-    font-weight: 700;
-  }
-
-  .note-inicia {
-    margin-left: 17px;
-  }
-
-
-  .circle {
-    background-color: $bright-gray;
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    border-radius: 100%;
-    color: #fff;
-    text-align: center;
-    border: solid 3px $wild-blue-yonder;
-    top: 5px;
-    left: 57px;
-    -webkit-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-  }
-
-  .circle:after {
-    content: ' ';
-    position: absolute;
-    display: block;
-    top: 11px;
-    bottom: 1px;
-    left: 0.5px;
-    height: 17px;
-    width: 2px;
-    transform: scale(1, 1.6);
-    background-color: $wild-blue-yonder;
-  }
-
-  .step:last-child .circle:after {
-    display: none
-  }
-
-  &:hover:not(.selected) {
-    border: 3px solid $queen-blue;
-    padding: 17px;
-
-    @include for-tablet-landscape {
-      padding: 12px;
-    }
-  }
-
-  &-selected {
+  &.is-selected {
     background-color: $queen-blue;
+    color: $white;
 
-    .title {
-      color: $white
+    .steps:not(.is-hollow) .steps-marker:not(.is-hollow) {
+      border: 3px solid $wild-blue-yonder;
     }
 
-    .circle {
+    .steps-segment::after {
+      background-color: $wild-blue-yonder;
+    }
+  }
+
+  &:hover:not(.is-selected) {
+    background-color: $wild-blue-yonder;
+
+    .steps:not(.is-hollow) .steps-marker:not(.is-hollow) {
+      border: 3px solid $queen-blue;
+    }
+
+    .steps-segment::after {
       background-color: $queen-blue;
     }
   }
 
-  &-number {
+  .route-number {
     font-size: 17px;
     color: $metallic-blue;
     font-weight: 800;
@@ -292,5 +268,92 @@ body {
     padding: 0 15px;
     border-radius: 40px;
     width: fit-content;
+    margin-bottom: 15px;
+  }
+
+  .steps-segment {
+    margin-left: 75px;
+
+    &::after {
+      background-color: $wild-blue-yonder;
+      -webkit-transition: background-color 100ms linear;
+      -ms-transition: background-color 100ms linear;
+      transition: background-color 100ms linear;
+    }
+  }
+
+  .steps-note {
+    position: absolute;
+    margin-left: -80px;
+    margin-top: -0.4em;
+
+    p {
+      width: 65px;
+      text-align: right;
+    }
+  }
+
+  .steps:not(.is-hollow) .steps-marker:not(.is-hollow) {
+    background-color: inherit;
+    border: 3px solid $wild-blue-yonder;
+    -webkit-transition: border-color 100ms linear;
+    -ms-transition: border-color 100ms linear;
+    transition: border-color 100ms linear;
+  }
+
+  .steps.is-vertical .steps-segment:not(:last-child) {
+    min-height: 2em;
+  }
+
+  .steps.is-super-thin.is-vertical .steps-segment:not(:last-child):after {
+    left: calc(.4em - 1.5px);
+    width: 3px;
+  }
+}
+
+.route-trajectory {
+  .is-vertical {
+    height: inherit;
+  }
+
+  .steps.is-thin.is-vertical .steps-segment:not(:last-child):after {
+    left: calc(.4em - 1.5px);
+    width: 3px;
+  }
+
+  .steps:not(.is-hollow) .steps-marker:not(.is-hollow) {
+    background-color: inherit;
+    border: 3px solid $sunglow;
+  }
+
+  .steps-segment {
+    cursor: pointer;
+
+    &:hover,
+    &-active {
+      .steps-marker {
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: -0.2rem;
+        margin-top: -0.2rem;
+      }
+
+      .steps-content {
+        margin-top: -1.4em !important;
+      }
+    }
+
+    &::after {
+      background-color: $sunglow;
+    }
+  }
+
+  .steps-content p {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .steps.is-vertical .steps-segment:not(:last-child) {
+    min-height: 3.5em;
   }
 }

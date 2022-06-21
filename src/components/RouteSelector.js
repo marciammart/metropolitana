@@ -51,16 +51,16 @@ const RouteSelector = () => {
   };
 
   const getLoading = () => {
-    return loading && <div className="route-selector-message">A pesquisar...</div>;
+    return loading && <div className="has-text-centered mt-6">A pesquisar...</div>;
   };
 
   const getError = () => {
-    return error && <div className="route-selector-message">Erro: {error}</div>;
+    return error && <div className="has-text-centered mt-6">Erro: {error}</div>;
   };
 
   const getData = () => {
     return !loading && data && data.length > 0 &&
-      <div className="route-selector-results">
+      <div>
         {data.map(route =>
           <RoutePreview
             key={route.directionId}
@@ -68,20 +68,19 @@ const RouteSelector = () => {
             onClick={() => handleSelect(route.directionId)}
             isSelected={searchParams.get("selected") === route.directionId} />
         )}
-
       </div>;
   };
 
   const getNotFound = () => {
-    return !loading && data && data.length === 0 && <div className="route-selector-message">Não foi encontrada nenhuma rota com o número indicado</div>;
+    return !loading && data && data.length === 0 && <div className="has-text-centered mt-6">Não foi encontrada nenhuma rota com o número indicado</div>;
   };
 
   const getDefault = () => {
-    return !loading && !data && !error && <div className="route-selector-message">Pesquise por uma linha para ver as opções</div>;
+    return !loading && !data && !error && <div className="has-text-centered mt-6">Pesquise por uma linha para ver as opções</div>;
   };
 
   return (
-    <div className="route-selector">
+    <>
       <Search
         onChange={handleSearch}
         defaultFilter={searchParams.get("filter")}
@@ -91,7 +90,7 @@ const RouteSelector = () => {
       {getData()}
       {getNotFound()}
       {getDefault()}
-    </div>
+    </>
   );
 };
 
